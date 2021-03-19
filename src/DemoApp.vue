@@ -22,9 +22,9 @@ export default {
         headerToolbar: {
           left: 'prev,next today',
           center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+          right: 'timeGridWeek,timeGridDay'
         },
-        initialView: 'dayGridMonth',
+        initialView: 'timeGridWeek',
         initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
         editable: true,
         selectable: true,
@@ -82,6 +82,7 @@ export default {
 
 <template>
   <div class='demo-app'>
+    <!--
     <div class='demo-app-sidebar'>
       <div class='demo-app-sidebar-section'>
         <h2>Instructions</h2>
@@ -111,6 +112,7 @@ export default {
         </ul>
       </div>
     </div>
+    -->
     <div class='demo-app-main'>
       <FullCalendar
         class='demo-app-calendar'
@@ -152,7 +154,7 @@ b { /* used for event dates/times */
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
   font-size: 14px;
 }
-
+/*
 .demo-app-sidebar {
   width: 300px;
   line-height: 1.5;
@@ -163,7 +165,7 @@ b { /* used for event dates/times */
 .demo-app-sidebar-section {
   padding: 2em;
 }
-
+*/
 .demo-app-main {
   flex-grow: 1;
   padding: 3em;
