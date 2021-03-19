@@ -20,8 +20,8 @@ export default {
           interactionPlugin // needed for dateClick
         ],
         headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
+          left: 'prev,title,next',
+          center: 'today',
           right: 'timeGridWeek,timeGridDay'
         },
         initialView: 'timeGridWeek',
@@ -31,9 +31,13 @@ export default {
         selectMirror: true,
         dayMaxEvents: true,
         weekends: true,
+        nowIndicator: true,
         select: this.handleDateSelect,
         eventClick: this.handleEventClick,
-        eventsSet: this.handleEvents
+        eventsSet: this.handleEvents,
+        windowResize: function() {
+          //alert('The calendar has adjusted to a window resize. Current view: ' + arg.view.type);
+        }
         /* you can update a remote database when these fire:
         eventAdd:
         eventChange:
@@ -45,11 +49,6 @@ export default {
   },
 
   methods: {
-
-    handleWeekendsToggle() {
-      this.calendarOptions.weekends = !this.calendarOptions.weekends // update a property
-    },
-
     handleDateSelect(selectInfo) {
       let title = prompt('Please enter a new title for your event')
       let calendarApi = selectInfo.view.calendar
@@ -174,6 +173,9 @@ b { /* used for event dates/times */
 .fc { /* the calendar root */
   max-width: 1100px;
   margin: 0 auto;
+}
+.fc-toolbar-chunk div {
+  display: flex;
 }
 
 </style>
