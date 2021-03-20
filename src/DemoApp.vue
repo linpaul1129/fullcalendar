@@ -8,7 +8,7 @@ import { INITIAL_EVENTS, createEventId } from './event-utils'
 export default {
 
   components: {
-    FullCalendar // make the <FullCalendar> tag available
+    FullCalendar 
   },
 
   data: function() {
@@ -17,18 +17,18 @@ export default {
         plugins: [
           dayGridPlugin,
           timeGridPlugin,
-          interactionPlugin // needed for dateClick
+          interactionPlugin 
         ],
         headerToolbar: {
           left: 'prev,title,next',
           center: 'today',
-          right: 'timeGridWeek,timeGridDay'
+          right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
         initialView: 'timeGridWeek',
-        initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+        initialEvents: INITIAL_EVENTS, 
         editable: true,
-        selectable: true,
-        selectMirror: true,
+        selectable: true, // 多選
+        showNonCurrentDates:false,
         dayMaxEvents: true,
         weekends: true,
         nowIndicator: true,
@@ -36,13 +36,8 @@ export default {
         eventClick: this.handleEventClick,
         eventsSet: this.handleEvents,
         windowResize: function() {
-          //alert('The calendar has adjusted to a window resize. Current view: ' + arg.view.type);
+          
         }
-        /* you can update a remote database when these fire:
-        eventAdd:
-        eventChange:
-        eventRemove:
-        */
       },
       currentEvents: []
     }
@@ -53,7 +48,7 @@ export default {
       let title = prompt('Please enter a new title for your event')
       let calendarApi = selectInfo.view.calendar
 
-      calendarApi.unselect() // clear date selection
+      calendarApi.unselect() 
 
       if (title) {
         calendarApi.addEvent({
@@ -81,37 +76,6 @@ export default {
 
 <template>
   <div class='demo-app'>
-    <!--
-    <div class='demo-app-sidebar'>
-      <div class='demo-app-sidebar-section'>
-        <h2>Instructions</h2>
-        <ul>
-          <li>Select dates and you will be prompted to create a new event</li>
-          <li>Drag, drop, and resize events</li>
-          <li>Click an event to delete it</li>
-        </ul>
-      </div>
-      <div class='demo-app-sidebar-section'>
-        <label>
-          <input
-            type='checkbox'
-            :checked='calendarOptions.weekends'
-            @change='handleWeekendsToggle'
-          />
-          toggle weekends
-        </label>
-      </div>
-      <div class='demo-app-sidebar-section'>
-        <h2>All Events ({{ currentEvents.length }})</h2>
-        <ul>
-          <li v-for='event in currentEvents' :key='event.id'>
-            <b>{{ event.startStr }}</b>
-            <i>{{ event.title }}</i>
-          </li>
-        </ul>
-      </div>
-    </div>
-    -->
     <div class='demo-app-main'>
       <FullCalendar
         class='demo-app-calendar'
@@ -143,7 +107,7 @@ li {
   padding: 0;
 }
 
-b { /* used for event dates/times */
+b {
   margin-right: 3px;
 }
 
@@ -153,18 +117,7 @@ b { /* used for event dates/times */
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
   font-size: 14px;
 }
-/*
-.demo-app-sidebar {
-  width: 300px;
-  line-height: 1.5;
-  background: #eaf9ff;
-  border-right: 1px solid #d3e2e8;
-}
 
-.demo-app-sidebar-section {
-  padding: 2em;
-}
-*/
 .demo-app-main {
   flex-grow: 1;
   padding: 3em;
